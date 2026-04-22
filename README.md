@@ -20,6 +20,7 @@ Let's have a lot of fun making this project.
 To generate a new component; ng generate component components/menu-item
 Add gRPC to the project; npm install --save-dev prettier prettier-plugin-css-order prettier-plugin-tailwindcss
 
+Split component into urls for html and css. Makes things more readable.
 
 
 
