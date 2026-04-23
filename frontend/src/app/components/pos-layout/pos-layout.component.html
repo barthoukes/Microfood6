@@ -1,0 +1,73 @@
+<!-- src/app/components/pos-layout/pos-layout.component.html -->
+<div class="pos-container">
+  <!-- LEFT COLUMN: Shopping Cart -->
+  <div class="cart-column">
+    <div class="cart-header">
+      <h3>Order for: {{ customerName }}</h3>
+    </div>
+    
+    <!-- Transaction Type Buttons -->
+    <div class="transaction-type">
+      @for (tt of transactionTypes; track tt.type) {
+        <button 
+          [class.active]="transactionType === tt.type"
+          (click)="setTransactionType(tt.type)">
+          {{ tt.displayName }}
+        </button>
+      }
+    </div>
+    
+    <div class="cart-items">
+      @for (cartItem of getActiveItems(); track cartItem.menu_item_id) {
+        <div class="cart-item">
+          <span class="item-quantity">{{ cartItem.quantity }}x</span>
+          <span class="item-name">{{ cartItem.local_name }}</span>
+          <span class="item-price">€{{ (cartItem.unit_price * cartItem.quantity) / 100 }}</span>
+          <button class="remove-btn" (click)="removeItem(cartItem.menu_item_id)">✖</button>
+        </div>
+      }
+      @if (getActiveItems().length === 0) {
+        <div class="empty-cart">No items selected</div>
+      }
+    </div>
+    
+    <div class="cart-footer">
+      <div class="subtotal-line">
+        <span>Subtotal:</span>
+        <span>€{{ subtotal / 100 }}</span>
+      </div>
+      <div class="tax-line">
+        <span>VAT:</span>
+        <span>€{{ taxTotal / 100 }}</span>
+      </div>
+      <div class="total-line">
+        <span>Total:</span>
+        <span class="total-amount">€{{ total / 100 }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- RIGHT COLUMN -->
+  <div class="menu-column">
+    <!-- TOP: Menu Items Grid -->
+    <div class="items-grid">
+      <app-menu-page 
+        [menuCardId]="menuCardId"
+        [menuPageId]="currentPageId"
+        (itemClicked)="onItemAdded($event)">
+      </app-menu-page>
+    </div>
+    
+    <!-- BOTTOM: Page Tabs -->
+    <div class="pages-tabs">
+      @for (page of pages; track page.id) {
+        <button 
+          class="page-tab"
+          [class.active]="currentPageId === page.id"
+          (click)="selectPage(page.id)">
+          {{ page.name }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

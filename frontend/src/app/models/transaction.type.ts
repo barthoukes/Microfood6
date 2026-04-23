@@ -12,3 +12,14 @@ export const TRANSACTION_TYPE_MAP: Record<TransactionType, { numericValue: numbe
   'eat-inside': { numericValue: 69, displayName: 'Eat Inside' },
   'wok': { numericValue: 87, displayName: 'Wok' },
 };
+
+// Add to transaction.type.ts
+export function getTransTypeValue(type: TransactionType): number
+{
+  return TRANSACTION_TYPE_MAP[type].numericValue;
+}
+
+export function getTransTypeDisplayName(type: TransactionType): string
+{
+  return TRANSACTION_TYPE_MAP[type].displayName;
+}

@@ -1,0 +1,16 @@
+.menu-grid 
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
+.spinner, .error 
+{
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
+}
+
+.error { color: red; }
+.empty { color: #666; }
