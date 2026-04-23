@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.bracketSameLine": false,
+  "typescript.format.braceStyle": "allman"
+}
+
