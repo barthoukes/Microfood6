@@ -133,13 +133,6 @@ export class ConfigService
   getGrpcHost(): string {
     return this.getOption('grpc_server', 'localhost');
   }
-  
-  getGrpcServerUrl(): string
-  {
-    // TEMPORARY: Force 127.0.0.1 to avoid security warnings
-    return 'http://127.0.0.1:50051';
-    // Your original code below...
-  }
 
   getGrpcPort(): number {
     return this.getOptionNumber('grpc_server_port', 50051);
@@ -166,11 +159,16 @@ export class ConfigService
     return host === 'localhost' || host === '127.0.0.1';
   }
   
- // getGrpcServerUrl(): string
- // {
- //   const host = this.getOption('test_grpc_host', 'localhost');
- //   const port = this.getOptionNumber('test_grpc_port', 50051);
- //   return `http://${host}:${port}`;
- // }
-
+  getGrpcServerUrl2(): string
+  {
+    const host = this.getOption('grpc_server', 'localhost');
+    const port = this.getOptionNumber('grpc_web_server_port', 50051);
+    return `http://${host}:${port}`;
+  }
+  getGrpcServerUrl(): string
+  {
+    // TEMPORARY: Force 127.0.0.1 to avoid security warnings
+    return 'http://localhost:8080';
+    // Your original code below...
+  }
 }
