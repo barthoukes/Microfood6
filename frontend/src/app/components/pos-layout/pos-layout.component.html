@@ -59,15 +59,11 @@
     </div>
     
     <!-- BOTTOM: Page Tabs -->
-    <div class="pages-tabs">
-      @for (page of pages; track page.id) {
-        <button 
-          class="page-tab"
-          [class.active]="currentPageId === page.id"
-          (click)="selectPage(page.id)">
-          {{ page.name }}
-        </button>
-      }
-    </div>
+  <!-- BOTTOM: Page Tabs (Dynamic from backend) -->
+  <app-page-grid 
+      [menuCardId]="menuCardId"
+      [selectedPageId]="currentPageId"
+      (pageSelected)="selectPage($event)">
+  </app-page-grid>
   </div>
 </div>

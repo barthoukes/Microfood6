@@ -1,22 +1,20 @@
-@if (loading) 
+<!-- Debug bar -->
+@if (false)
 {
-    <div class="spinner">Loading...</div>
-}
-
-@if (error) 
-{
-    <div class="error">{{ error }}</div>
-}
-
-@if (!loading && !error) 
-{
-    <div class="menu-grid">
-    @for (item of menuItems; track item.menu_item_id) 
-    {
-        <app-menu-item 
-            [menuItem]="item"
-            (itemClicked)="onItemClicked($event)">
-        </app-menu-item>
-    }
+    <div style="background: yellow; padding: 10px; margin: 5px; border: 2px solid red; font-weight: bold;">
+        🔍 DEBUG: loading={{ loading }} | error={{ error }} | items.length={{ menuItems.length }}
     </div>
 }
+
+<!-- THE ACTUAL MENU ITEM GRID WITH APP-MENU-ITEM -->
+@if (!loading && !error && menuItems.length > 0) {
+    <div class="menu-grid">
+        @for (item of menuItems; track item.menu_item_id) {
+            <app-menu-item 
+                [menuItem]="item"
+                (itemClicked)="onItemClicked($event)">
+            </app-menu-item>
+        }
+    </div>
+}
+

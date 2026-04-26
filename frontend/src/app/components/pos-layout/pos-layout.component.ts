@@ -8,11 +8,13 @@ import { MenuItem } from '../../models/menu-item.interface';
 import { Transaction } from '../../models/transaction.interface';
 import { TransactionType, TRANSACTION_TYPE_MAP } from '../../models/transaction.type';
 import { DeletedStatus } from '../../models/deleted-status.type';
+import { ConfigRemoteService } from '../../services/config-remote.service';
+import { PageGridComponent } from "../page-grid/page-grid.component";
 
 @Component({
     selector: 'app-pos-layout',
     standalone: true,
-    imports: [CommonModule, MenuPageComponent],
+    imports: [CommonModule, MenuPageComponent, PageGridComponent],
     templateUrl: './pos-layout.component.html',
     styleUrls: ['./pos-layout.component.css']
 })
@@ -38,20 +40,45 @@ export class PosLayoutComponent implements OnInit {
         { id: 4, name: 'Desserts' }
     ];
   
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService,
+        private configRemote: ConfigRemoteService) 
+    {}
 
-    ngOnInit(): void
+    ngOnInit()
     {
-    console.log('🔵 PosLayoutComponent initialized');
-    console.log('📦 Getting transaction from cartService...');
-
-    this.transaction = this.cartService.getTransaction();
-    console.log('✅ Transaction:', this.transaction);
-
-    this.updateTotals();
-    console.log('💰 Totals - Subtotal:', this.subtotal, 'Tax:', this.taxTotal, 'Total:', this.total);
+        // Wait for config to load before setting menu card ID
+        this.configRemote.loadAllConfigs().then(() => 
+        {
+            console.log('🔵 PosLayoutComponent initialized');
+            this.transaction = this.cartService.getTransaction();
+            this.updateMenuCardId();
+            this.updateTotals();
+            console.log('✅ Configuration ready, menu card ID:', this.menuCardId);
+        });
     }
-  
+
+    updateMenuCardId(): void
+    {
+        switch (this.transactionType)
+        {
+            case 'takeaway':
+            case 'takeaway-phone':
+            this.menuCardId = this.configRemote.getMenuCardTakeaway();
+            break;
+            case 'delivery':
+            this.menuCardId = this.configRemote.getMenuCardDelivery();
+            break;
+            case 'sit-in':
+            case 'eat-inside':
+            case 'wok':
+            default:
+            this.menuCardId = this.configRemote.getMenuCardSitin();
+            break;
+        }
+        
+        console.log(`🍽️ ${this.transactionType} → Menu card: ${this.menuCardId}`);
+    }
+
     setTransactionType(type: TransactionType): void
     {
         console.log('🔄 Changing transaction type to:', type);
@@ -75,11 +102,6 @@ export class PosLayoutComponent implements OnInit {
         this.updateTotals();
     }
   
-    selectPage(pageId: number): void
-    {
-        this.currentPageId = pageId;
-    }
-    
     private updateTotals(): void
     {
         if (this.transaction)
@@ -95,5 +117,12 @@ export class PosLayoutComponent implements OnInit {
     {
         if (!this.transaction) return [];
         return this.transaction.items.filter(i => i.deleted_status === DeletedStatus.DELETE_NOT);
+    }
+
+    selectPage(pageId: number): void
+    {
+        console.log('📄 Page selected:', pageId);
+        this.currentPageId = pageId;
+    // MenuPageComponent will automatically reload because @Input() menuPageId changed
     }
 }

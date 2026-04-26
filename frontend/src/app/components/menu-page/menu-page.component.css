@@ -1,16 +1,75 @@
-.menu-grid 
-{
+/* Horizontal swipe container */
+
+.items-grid-container {
+    height: 66vh;  /* 2/3 of viewport height */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.menu-grid-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    cursor: grab;
+    user-select: none;
+    scrollbar-width: thin;
+    white-space: nowrap;
+}
+
+.menu-grid-container:active {
+    cursor: grabbing;
+}
+
+/* Flex layout for horizontal scrolling */
+.menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     padding: 16px;
+    
+    /* Auto-fit: as many columns as will fit, each minimum 140px, maximum 1fr */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
-.spinner, .error 
-{
+
+/* Each menu item has fixed width */
+::ng-deep app-menu-item {
+    display: inline-block;
+    width: 200px;
+    flex-shrink: 0;
+    vertical-align: top;
+}
+
+/* Remove scrollbar for cleaner look (optional) */
+.menu-grid-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.menu-grid-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.menu-grid-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.menu-grid-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.spinner, .error {
     text-align: center;
     padding: 50px;
     font-size: 1.2em;
 }
 
-.error { color: red; }
-.empty { color: #666; }
+.empty {
+    text-align: center;
+    padding: 50px;
+    color: #666;
+}
+
+.error {
+    color: red;
+}

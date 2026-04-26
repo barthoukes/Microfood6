@@ -3,61 +3,73 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { MenuItem } from '../../models/menu-item.interface';
-import { MenuItemLevel, MENU_ITEM_ORDER_LEVEL } from '../../models/menu-item-level.type';
+import { MenuItemLevel, MENU_ITEM_ORDER_LEVEL, toMenuItemLevel } from '../../models/menu-item-level.type';
 
 @Component({
   selector: 'app-menu-item',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="menu-item" [class.out-of-stock]="isOutOfStock()" (click)="onClick()">
-      <h3>{{ menuItem.local_name }}</h3>
-      <p class="chinese">{{ menuItem.chinese_name }}</p>
-      @if (!isOutOfStock()) {
-        <p class="price">€{{ menuItem.restaurant_price / 100 }}</p>
-      }
-      @if (isOutOfStock()) {
-        <p class="sold-out">SOLD OUT</p>
-      }
-    </div>
-  `,
-  styles: [`
-    .menu-item {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 16px;
-      cursor: pointer;
-      text-align: center;
-    }
-    .menu-item.out-of-stock {
-      opacity: 0.5;
-      background-color: #f0f0f0;
-    }
-    .sold-out { color: red; font-weight: bold; }
-    .price { color: green; font-weight: bold; }
-    .chinese { color: #666; font-size: 0.9em; }
-  `]
+  templateUrl: './menu-item.component.html',
+  styleUrls: ['./menu-item.component.css']
 })
 
 export class MenuItemComponent {
   @Input() menuItem!: MenuItem;
   @Output() itemClicked = new EventEmitter<MenuItem>();
   
-  getLevel(): MenuItemLevel | undefined {
-    const entry = Object.entries(MENU_ITEM_ORDER_LEVEL)
-      .find(([_, value]) => value.numericValue === this.menuItem.order_level_numeric);
-    return entry ? (entry[0] as MenuItemLevel) : undefined;
+  /**
+   * Convert number color to hex string
+   * Supports formats: 0xRRGGBB or 0xAARRGGBB
+   */
+  private numberToHexColor(colorNum: number | undefined): string {
+    if (!colorNum) return '#f9f9f9';
+    
+    // Remove alpha channel if present (0xAARRGGBB -> 0xRRGGBB)
+    const rgb = colorNum & 0x00FFFFFF;
+    return '#' + rgb.toString(16).padStart(6, '0');
+  }
+  
+  /**
+   * Get vertical gradient background (bottom to top)
+   * colour_back2 at bottom, colour_back at top
+   */
+  getBackgroundGradient(): string {
+    const topColor = this.numberToHexColor(this.menuItem.colour_back);
+    const bottomColor = this.numberToHexColor(this.menuItem.colour_back2);
+    
+    // If colors are the same or bottom color missing, use solid color
+    if (topColor === bottomColor || !this.menuItem.colour_back2) {
+      return topColor;
+    }
+    
+    // Vertical gradient: bottom to top (0% at bottom, 100% at top)
+    return `linear-gradient(to top, ${bottomColor}, ${topColor})`;
+  }
+  
+  /**
+   * Get text color (light or dark based on background)
+   */
+  getTextColor(): string {
+    if (this.menuItem.colour_text) {
+      return this.numberToHexColor(this.menuItem.colour_text);
+    }
+    // Default to dark text
+    return '#333333';
+  }
+  
+  /**
+   * Get price color (can be different from text color)
+   */
+  getPriceColor(): string {
+    if (this.menuItem.colour_selected_text) {
+      return this.numberToHexColor(this.menuItem.colour_selected_text);
+    }
+    // Default to green for price
+    return '#2e7d32';
   }
   
   isOutOfStock(): boolean {
-    const level = this.getLevel();
-    return level === 'out-of-stock';
-  }
-  
-  getLevelDisplayName(): string {
-    const level = this.getLevel();
-    if (!level) return 'Unknown';
-    return MENU_ITEM_ORDER_LEVEL[level].displayName;
+    return this.menuItem.order_level === 'out-of-stock';
   }
   
   onClick(): void {

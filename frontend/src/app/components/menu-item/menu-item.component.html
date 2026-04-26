@@ -1,0 +1,14 @@
+<div class="menu-item" 
+         [class.out-of-stock]="isOutOfStock()"
+         [style.background]="getBackgroundGradient()"
+         [style.color]="getTextColor()"
+         (click)="onClick()">
+      <h3>{{ menuItem.local_name }}</h3>
+      <p class="chinese">{{ menuItem.chinese_name }}</p>
+      @if (!isOutOfStock()) {
+        <p class="price" [style.color]="getPriceColor()">€{{ menuItem.restaurant_price / 100 }}</p>
+      }
+      @if (isOutOfStock()) {
+        <p class="sold-out">SOLD OUT</p>
+      }
+    </div>

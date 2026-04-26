@@ -1,0 +1,22 @@
+.menu-item 
+{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+.menu-item:hover 
+{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.menu-item.out-of-stock 
+{
+    opacity: 0.5;
+    background-color: #f0f0f0;
+}
+.sold-out { color: red; font-weight: bold; }
+.price { font-weight: bold; }
+.chinese { font-size: 0.9em; opacity: 0.8; }

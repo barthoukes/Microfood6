@@ -84,7 +84,7 @@ export class CartService {
         quantity: quantity,
         unit_price: unitPrice,
         tax_percentage: taxPercentage,
-        level: item.order_level_numeric,
+        order_level: item.order_level,
         deleted_status: DeletedStatus.DELETE_NOT,  // ← Using enum!
         sequence_nr: this.nextSequence++,
         sub_sequence: 0

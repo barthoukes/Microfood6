@@ -32,3 +32,16 @@ export const MENU_ITEM_ORDER_LEVEL: Record<MenuItemLevel, { numericValue: number
   'sub-item': { numericValue: 16, displayName: 'Sub-Item' },
   'person': { numericValue: 80, displayName: 'Person' }
 };
+
+// Helper function to convert numeric order level to MenuItemLevel type
+export function toMenuItemLevel(numericValue: number): MenuItemLevel 
+{
+    // Find the key whose numericValue matches
+    for (const [key, value] of Object.entries(MENU_ITEM_ORDER_LEVEL)) {
+        if (value.numericValue === numericValue) {
+            return key as MenuItemLevel;
+        }
+    }
+    // Default to 'item' if not found
+    return 'item';
+}

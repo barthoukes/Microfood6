@@ -1,0 +1,14 @@
+<div class="page-grid-container">
+    <div class="page-grid"
+            [style.grid-template-columns]="'repeat(' + columns + ', 1fr)'">
+        
+        @for (page of pages; track page.menuPageId) {
+            <button class="page-button"
+                    [class.active]="page.menuPageId === selectedPageId"
+                    (click)="selectPage(page.menuPageId)">
+                <div class="page-name">{{ getPageDisplayName(page) }}</div>
+                <div class="page-id">Page {{ page.menuPageId }}</div>
+            </button>
+        }
+    </div>
+</div>

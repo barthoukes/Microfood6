@@ -19,9 +19,9 @@
 //  Unauthorized duplication and disclosure to third parties is forbidden.
 //============================================================================*/
 //
+import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryWriteOptions } from "@protobuf-ts/runtime";
 import type { IBinaryWriter } from "@protobuf-ts/runtime";
-import { WireType } from "@protobuf-ts/runtime";
 import type { BinaryReadOptions } from "@protobuf-ts/runtime";
 import type { IBinaryReader } from "@protobuf-ts/runtime";
 import { UnknownFieldHandler } from "@protobuf-ts/runtime";
@@ -32,10 +32,6 @@ import { MessageType } from "@protobuf-ts/runtime";
  * @generated from protobuf message common.Empty
  */
 export interface Empty {
-    /**
-     * @generated from protobuf field: int32 empty = 1
-     */
-    empty: number;
 }
 /**
  * @generated from protobuf message common.Item
@@ -1755,13 +1751,10 @@ export enum TreeRow {
 // @generated message type with reflection information, may provide speed optimized methods
 class Empty$Type extends MessageType<Empty> {
     constructor() {
-        super("common.Empty", [
-            { no: 1, name: "empty", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
-        ]);
+        super("common.Empty", []);
     }
     create(value?: PartialMessage<Empty>): Empty {
         const message = globalThis.Object.create((this.messagePrototype!));
-        message.empty = 0;
         if (value !== undefined)
             reflectionMergePartial<Empty>(this, message, value);
         return message;
@@ -1771,9 +1764,6 @@ class Empty$Type extends MessageType<Empty> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* int32 empty */ 1:
-                    message.empty = reader.int32();
-                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1786,9 +1776,6 @@ class Empty$Type extends MessageType<Empty> {
         return message;
     }
     internalBinaryWrite(message: Empty, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* int32 empty = 1; */
-        if (message.empty !== 0)
-            writer.tag(1, WireType.Varint).int32(message.empty);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
