@@ -12,6 +12,13 @@ This is a POS application — yes, both meanings of the acronym — that will be
 Built in a territory I’ve never worked in before.
 Pray for me. Star for good luck.
 
+Some highlights:
+* Order verbal and pay the personnel (current situation).
+* Order online and pay at home using WERO QR-code (NEW).
+* Order online and pay in restaurant (NEW).
+* Order in restaurant kiosk system and pay at kiosk with SumUP (NEW). 
+<img width="2459" height="1360" alt="image" src="https://github.com/user-attachments/assets/54d59ab5-ca3c-4f37-b497-cb35599212ed" />
+
 The Website should work in POS computers, tablets, phones and others.
 Let's have a lot of fun making this project.
 <img width="512" height="400" alt="ober2" src="https://github.com/user-attachments/assets/70a4dce9-b7e9-494c-9e6e-43784d43f3a1" />
