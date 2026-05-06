@@ -14,10 +14,12 @@ Pray for me. Star for good luck.
 
 Some highlights:
 * Order verbal and pay the personnel (current situation).
-* Order online and pay at home using WERO QR-code (NEW).
-* Order online and pay in restaurant (NEW).
-* Order in restaurant kiosk system and pay at kiosk with SumUP (NEW). 
-<img width="2459" height="1360" alt="image" src="https://github.com/user-attachments/assets/54d59ab5-ca3c-4f37-b497-cb35599212ed" />
+* Order online and pay at home using WERO QR-code, visit restaurant to collect food (NEW).
+* Order online, visit the restaurant to collect food and pay in restaurant (NEW).
+* Order in restaurant kiosk system and pay at kiosk with SumUP. Wait for the food (NEW). 
+* Order online and pay at home using WERO QR-code, then wait for the food (NEW).
+<img width="3171" height="2059" alt="image" src="https://github.com/user-attachments/assets/1f04fcc3-0d15-4b34-bae3-cd198f96d472" />
+
 
 The Website should work in POS computers, tablets, phones and others.
 Let's have a lot of fun making this project.
