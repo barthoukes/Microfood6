@@ -18,8 +18,7 @@ Some highlights:
 * Order online, visit the restaurant to collect food and pay in restaurant (NEW).
 * Order in restaurant kiosk system and pay at kiosk with SumUP. Wait for the food (NEW). 
 * Order online and pay at home using WERO QR-code, then wait for the food (NEW).
-<img width="3171" height="2059" alt="image" src="https://github.com/user-attachments/assets/1f04fcc3-0d15-4b34-bae3-cd198f96d472" />
-
+<img width="3181" height="1969" alt="image" src="https://github.com/user-attachments/assets/cbd34113-687a-4647-b1c0-ec53ac355d68" />
 
 The Website should work in POS computers, tablets, phones and others.
 Let's have a lot of fun making this project.
