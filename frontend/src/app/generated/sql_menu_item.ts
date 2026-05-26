@@ -509,7 +509,7 @@ class ItemsToExchangeRequest$Type extends MessageType<ItemsToExchangeRequest> {
         super("mi.ItemsToExchangeRequest", [
             { no: 1, name: "menu_card_id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "menu_page_id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "sort", kind: "enum", T: () => ["common.SortItem", SortItem, "SORT_ITEM_"] }
+            { no: 3, name: "sort", kind: "enum", T: () => ["common.SortItem", SortItem] }
         ]);
     }
     create(value?: PartialMessage<ItemsToExchangeRequest>): ItemsToExchangeRequest {

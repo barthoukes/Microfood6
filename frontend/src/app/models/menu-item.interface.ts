@@ -14,6 +14,11 @@ export interface MenuItem {
     takeaway_tax: TaxType;
     order_level: MenuItemLevel;
     is_visible: number;
+    // Position on screen
+    position_x: number;
+    position_y: number;
+    position_width: number;
+    position_height: number;
     // Colors from gRPC
     colour_text: number;
     colour_back: number;
@@ -21,4 +26,6 @@ export interface MenuItem {
     colour_selected_back: number;
     colour_back2: number;
     colour_selected_back2: number;
+    grid_column: number;
+    grid_row: number;
 }

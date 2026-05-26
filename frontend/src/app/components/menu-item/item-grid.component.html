@@ -1,0 +1,29 @@
+<!-- src/app/components/item-grid/item-grid.component.html -->
+<div class="grid-container" 
+     #scrollContainer
+     [style.overflow-x]="isVerticalOrientation ? 'hidden' : 'auto'"
+     [style.overflow-y]="isVerticalOrientation ? 'auto' : 'hidden'"
+     [style.height]="isVerticalOrientation ? 'auto': containerHeight"
+     [style.width]="isVerticalOrientation ? containerWidth : 'auto'">
+    
+    <div class="fixed-grid"
+         [style.display]="'grid'"
+         [style.gridTemplateColumns]="gridTemplateColumns"
+         [style.gridTemplateRows]="gridTemplateRows"
+         [style.gap]="'2px'"
+         [style.width]="gridWidth"
+         [style.height]="gridHeight">
+        
+        @for (item of menuItems; track item.menu_item_id) 
+        {
+            <div class="grid-item"
+                 [style.gridColumn]="item.grid_column+1"
+                 [style.gridRow]="item.grid_row+1">
+                <app-menu-item 
+                    [menuItem]="item"
+                    (itemClicked)="onItemClick($event)">
+                </app-menu-item>
+            </div>
+        }
+    </div>
+</div>

@@ -1439,31 +1439,6 @@ export enum SkipInvisible {
     SHOW = 83
 }
 /**
- * @generated from protobuf enum common.SortItem
- */
-export enum SortItem {
-    /**
-     * @generated from protobuf enum value: SORT_ITEM_NONE = 0;
-     */
-    NONE = 0,
-    /**
-     * @generated from protobuf enum value: SORT_ITEM_ALIAS = 1;
-     */
-    ALIAS = 1,
-    /**
-     * @generated from protobuf enum value: SORT_ITEM_ALIAS_SMART = 2;
-     */
-    ALIAS_SMART = 2,
-    /**
-     * @generated from protobuf enum value: SORT_ITEM_SALES = 3;
-     */
-    SALES = 3,
-    /**
-     * @generated from protobuf enum value: SORT_ITEM_NAME = 4;
-     */
-    NAME = 4
-}
-/**
  * @generated from protobuf enum common.SortOrders
  */
 export enum SortOrders {
@@ -1747,6 +1722,31 @@ export enum TreeRow {
      * @generated from protobuf enum value: TREE_LAST_SUBITEM_LAST_SUBSUBITEM = 9;
      */
     TREE_LAST_SUBITEM_LAST_SUBSUBITEM = 9
+}
+/**
+ * @generated from protobuf enum common.SortItem
+ */
+export enum SortItem {
+    /**
+     * @generated from protobuf enum value: NONE = 0;
+     */
+    NONE = 0,
+    /**
+     * @generated from protobuf enum value: ALIAS = 1;
+     */
+    ALIAS = 1,
+    /**
+     * @generated from protobuf enum value: ALIAS_SMART = 2;
+     */
+    ALIAS_SMART = 2,
+    /**
+     * @generated from protobuf enum value: SALES = 3;
+     */
+    SALES = 3,
+    /**
+     * @generated from protobuf enum value: NAME = 4;
+     */
+    NAME = 4
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Empty$Type extends MessageType<Empty> {

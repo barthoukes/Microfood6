@@ -32,13 +32,6 @@ export class PosLayoutComponent implements OnInit {
         type: key as TransactionType,
         displayName: value.displayName
     }));
-    
-    pages = [
-        { id: 1, name: 'Soup' },
-        { id: 2, name: 'Snacks' },
-        { id: 3, name: 'Main Courses' },
-        { id: 4, name: 'Desserts' }
-    ];
   
     constructor(private cartService: CartService,
         private configRemote: ConfigRemoteService) 
@@ -84,6 +77,7 @@ export class PosLayoutComponent implements OnInit {
         console.log('🔄 Changing transaction type to:', type);
         this.transactionType = type;
         this.cartService.setTransactionType(type);
+        this.updateMenuCardId();
         this.updateTotals();
     }
 

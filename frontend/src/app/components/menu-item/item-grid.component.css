@@ -1,0 +1,44 @@
+/* src/app/components/item-grid/item-grid.component.css */
+.grid-container {
+    background: #e8e8e8;
+    border-radius: 8px;
+    position: relative;
+    isolation: isolate;
+}
+
+.fixed-grid {
+    display: grid;
+    background: #e8e8e8;
+    gap: 4px;
+    padding: 8px;
+    width: fit-content;        /* ← Grid only as wide as needed */
+}
+
+.grid-item {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Scrollbar styling */
+.grid-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.grid-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+    background: #2c7da0;
+    border-radius: 4px;
+}
+
+.grid-container::-webkit-scrollbar-thumb:hover {
+    background: #1e5a73;
+}

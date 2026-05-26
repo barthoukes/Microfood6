@@ -47,12 +47,18 @@ getMenuItemsFromPage(
           is_visible: grpcItem.isVisible,
           takeaway_tax: toTaxType(grpcItem.takeawayTax),
           restaurant_tax: toTaxType(grpcItem.restaurantTax),
+          position_x: grpcItem.positionX,
+          position_y: grpcItem.positionY,
+          position_width: grpcItem.positionWidth,
+          position_height: grpcItem.positionHeight,
           colour_text: grpcItem.colourText,
           colour_back: grpcItem.colourBack,
           colour_selected_text: grpcItem.colourSelectedText,
           colour_selected_back: grpcItem.colourSelectedBack,
           colour_back2: grpcItem.colourBack2,
-          colour_selected_back2: grpcItem.colourSelectedBack2
+          colour_selected_back2: grpcItem.colourSelectedBack2,
+          grid_row: 0,
+          grid_column: 0
         })) || [];
         console.log(`✅ Converted ${items.length} items`);
         subscriber.next(items);
